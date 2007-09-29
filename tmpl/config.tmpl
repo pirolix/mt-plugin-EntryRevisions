@@ -1,0 +1,39 @@
+<p>
+<MT_TRANS phrase="Configure the version copies to store. The version copies are stored in the other blogs as a new entry on each saving the entry.">
+</p>
+
+<input type="hidden" name="admin_author_id" value="<TMPL_VAR NAME=ADMIN_AUTHOR_ID>" />
+<div class="setting grouped">
+  <div class="label">
+    <label for="storage_blog_id"><MT_TRANS phrase="Configure Weblog">:</label>
+  <!--label--></div>
+  <div class="field">
+    <select name="storage_blog_id" id="storage_blog_id" onchange="onChangeStorageBlogId(this)">
+<TMPL_LOOP NAME=VERSION_STORED_BLOGS>
+      <option value="<TMPL_VAR NAME=VALUE>"<TMPL_IF NAME=SELECTED> selected</TMPL_IF>><TMPL_VAR NAME=NAME></option>
+</TMPL_LOOP>
+    </select>
+    <p>
+      <MT_TRANS phrase="*DO NOT* configure the each blogs in their circulating reference. It may cause the system hunged up.">
+    </p>
+  <!--field--></div>
+<!--setting--></div>
+
+<div class="setting grouped" id="config_stored_versions_number" style="display: none;">
+  <div class="label">
+    <label for="stored_versions_number"><MT_TRANS phrase="Version copies">:</label>
+  <!--label--></div>
+  <div class="field">
+    <input type="text" size="4" name="stored_versions_number" id="stored_versions_number" value="<TMPL_VAR NAME=STORED_VERSIONS_NUMBER>" />
+    <p>
+      <MT_TRANS phrase="Set the number of version copies of entry to store. Increasing the number enables you to retrieve the distance past, but also increases the size of repository database.">
+    </p>
+  <!--field--></div>
+<!--setting--></div>
+<script type="text/javascript">
+
+function onChangeStorageBlogId (e) {
+  document.getElementById('config_stored_versions_number').style.display = e.selectedIndex ? 'block' : 'none';
+}
+onChangeStorageBlogId (document.getElementById('storage_blog_id')); // initialize
+</script>

@@ -1,0 +1,53 @@
+<div class="panel" id="versions-panel"<TMPL_IF NAME=TAB_VERSIONS> style="display: block"</TMPL_IF>>
+
+<TMPL_IF NAME=NUM_VERSIONS>
+<h4><MT_TRANS phrase="Versions of entry"></h4>
+
+<p class="page-desc">
+<MT_TRANS phrase="List below is the stored versions of this entry. Select a version and the version you selected is shown, but not yet been saved. If that copy is what you want, you can revert the entry with saving the shown entry.">
+</p>
+
+<div class="list">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th width="10"></th>
+        <th><MT_TRANS phrase="Revision"></th>
+        <th><MT_TRANS phrase="Last Updated"></th>
+        <th><MT_TRANS phrase="Entry Body"></th>
+        <th><MT_TRANS phrase="Extended Entry"></th>
+        <th><MT_TRANS phrase="Excerpt"></th>
+        <th><MT_TRANS phrase="Keywords"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+<TMPL_LOOP NAME=VERSIONS>
+      <tr class="<TMPL_IF __ODD__>odd<TMPL_ELSE>even</TMPL_IF>">
+        <td><TMPL_IF NAME=SELECTED>&raquo;</TMPL_IF></td>
+        <td><a href="<TMPL_VAR NAME=SCRIPT_URL>?<TMPL_VAR NAME=RETURN_ARGS>&revised_id=<TMPL_VAR NAME=ENTRY_ID>">
+          <TMPL_IF NAME=COUNT><TMPL_VAR NAME=COUNT><TMPL_ELSE><MT_TRANS phrase="Latest"></TMPL_IF></a></td>
+        <td><TMPL_VAR NAME=CREATED_ON></td>
+        <td><TMPL_VAR NAME=TEXT_BYTES></td>
+        <td><TMPL_VAR NAME=TEXT_MORE_BYTES></td>
+        <td><TMPL_VAR NAME=EXCERPT_BYTES></td>
+        <td><TMPL_VAR NAME=KEYWORDS_BYTES></td>
+      </tr>
+</TMPL_LOOP>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>bytes</th>
+        <th>bytes</th>
+        <th>bytes</th>
+        <th>bytes</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<TMPL_ELSE>
+<div class="message"><MT_TRANS phrase="No Version copy exist for this entry."></div>
+</TMPL_IF>
+
+<!--versions-panel--></div>
